@@ -1,0 +1,1184 @@
+<parameters version="1.0">
+  <group name="System">
+    *** Expert Mode allows access to some base parameters which don&apos;t directly affect system operation but affect other parameters.
+    <param name="ExpertMode" value="Enabled" />
+
+    *** Number of battery cells per battery block. In a normal 12 V lead-acid battery block there are 6 cells per block. If block is the same as cell, use value of 1.
+    <param name="CellsPerBlock" value="6" />
+
+    *** Defines voltage version of the system as number of battery blocks per string. For 12 V battery blocks, value 4 of this parameter means a 48 V system.
+    <param name="BlocksPerString" value="4" />
+
+    *** Defines voltage group of rectifiers to be controlled. This value must match with the voltage group of the installed rectifiers. Rectifier voltage groups are: 2 for 24V, 4 for 48V etc. When ca. 12 V battery blocks are used, value of this parameter is equal to Voltage Version.
+    <param name="RectVoltGroup" value="4" />
+
+    *** Internal
+    <param name="NumCells" value="24" />
+
+    *** Nominal maximum current rating of the system. Also used as default value for current shunt nominal current settings.
+    <param name="SysNomCurrent" value="500.000000" />
+
+    *** Total capacity of batteries in Ampere-hours.
+    <param name="BattCapacity" value="20.000000" />
+
+    *** Enable/disable energy save mode. When enabled, a minimum number of rectifiers is used to supply power. The unused rectifiers are put into a standby mode. This increases overall system efficiency.
+    <param name="EnergySaveMode" value="Disabled" />
+
+    *** Enables/Disables support for inverter control and configuration.
+    <param name="InverterSupport" value="Enabled" />
+
+    *** Language selection for the local interface.
+    <param name="Language" value="Russian" />
+
+    *** When enabled, user specified device names are shown in local display. If name hasn&apos;t been given, device&apos;s default name is used. When disabled, default names are used in the local display.
+    <param name="DeviceNames" value="Disabled" />
+
+    *** When enabled, Inverter AC output value is shown in local display&apos;s main page. When disabled, Rectifier DC output value is shown in local display&apos;s main page.
+    <param name="MainPageOutputAC" value="Disabled" />
+
+    *** Local Interface system password. If the password is 0000, it will not be asked.
+    <param name="SystemPassword" value="0000" />
+
+  </group>
+
+  <group name="Battery">
+    *** Defines maximum charge voltage per cell for all parameters. This value has to be higher than Minimum Cell Voltage.
+    <param name="CellMaxV" value="2.500000" />
+
+    *** Defines minimum charge voltage per cell for all parameters. This value has to be lower than Maximum Cell Voltage and higher than Minimum Cell Monitoring Voltage.
+    <param name="CellMinV" value="1.800000" />
+
+    *** Defines minimum monitoring voltage per cell for all parameters. This value has to be lower than Minimum Cell Voltage.
+    <param name="CellMinMonitorV" value="1.750000" />
+
+    *** Defines nominal cell voltage.
+    <param name="CellNomV" value="2.000000" />
+
+    *** Defines float charge voltage per battery cell.
+    <param name="CellFloatV" value="2.270000" />
+
+    *** Defines boost charge voltage per battery cell.
+    <param name="CellBoostV" value="2.400000" />
+
+    *** Temperature compensation coefficient, volts per degree of celcius per cell.
+    <param name="CellVperC" value="0.003000" />
+
+  </group>
+
+  <group name="Comm">
+    *** Whether to enable DHCP support. DHCP can be used to obtain IP settings automatically from a network supporting DHCP. Note! Changing the setting will take effect after the logout.
+    <param name="DHCP" value="Disabled" />
+
+    *** IP Address for TCP/IP in format aaa.bbb.ccc.ddd. Note! Changing the IP address will take effect after the logout.
+    <param name="IPAddress" value="10.10.12.21" />
+
+    *** IP Netmask for TCP/IP in format aaa.bbb.ccc.ddd. Note! Changing the netmask will take effect after the logout.
+    <param name="Netmask" value="255.255.255.0" />
+
+    *** IP address of gateway (router) for TCP/IP in format aaa.bbb.ccc.ddd. Note! Changing the gateway will take effect after the logout.
+    <param name="Gateway" value="10.10.12.1" />
+
+    *** IP address of primary DNS server in format aaa.bbb.ccc.ddd.
+    <param name="DNS1" value="192.168.67.1" />
+
+    *** IP address of secondary DNS server in format aaa.bbb.ccc.ddd.
+    <param name="DNS2" value="0.0.0.0" />
+
+    *** Baud rate for serial port communications.
+    <param name="Baudrate" value="115200" />
+
+    *** Number of data bits for serial port communications.
+    <param name="DataBits" value="8" />
+
+    *** Parity checking mode for serial port communications.
+    <param name="Parity" value="None" />
+
+    *** Number of stop bits for serial port communications.
+    <param name="StopBits" value="1" />
+
+    <group name="SMTP">
+      *** IP address (numeric or FQDN) of SMTP mail relay server. Single entry only.
+      <param name="Gateway" value="" />
+
+      *** Defines the alarm states which cause sending of an alarm email.
+      <param name="Trigger" value="Disabled" />
+
+      *** Period for sending alarm mails in hours/minutes.
+      <param name="Period" value="01h 00m" />
+
+      *** The email address which is used as the sender of alarm emails.
+      <param name="From" value="" />
+
+      *** Email address of alarm mail recipient.
+      <param name="To" value="" />
+
+    </group>
+
+    <group name="SNMP">
+      *** SNMPv1/v2c Community name. Leave empty to disable.
+      <param name="Community" value="Public" />
+
+      *** SNMPv3 Engine ID. Leave empty to use MAC-address.
+      <param name="EngineID" value="" />
+
+      *** SNMPv3 Username.
+      <param name="Username" value="" />
+
+      *** SNMPv3 security level. Use to enable authentication and encryption.
+      <param name="SecurityLevel" value="noAuthNoPriv" />
+
+      *** SNMPv3 authentication algorithm: MD5 or SHA.
+      <param name="AuthenticationAlgorithm" value="MD5" />
+
+      *** SNMPv3 authentication password. Minimum length is 8 characters.
+      <param name="AuthenticationPassword" value="" />
+
+      *** SNMPv3 privacy (encryption) algorithm: DES or AES.
+      <param name="PrivacyAlgorithm" value="DES" />
+
+      *** SNMPv3 privacy password. Minimum length is 8 characters. Leave empty to use same password as for authentication.
+      <param name="PrivacyPassword" value="" />
+
+      *** Switch to enable SNMP SET support. Enable only after configuring safe v2c community and v3 security parameters.
+      <param name="Write" value="Enabled" />
+
+      *** Specify the format of traps to send. Version 2c trap, version 3 trap or version 3 inform (confirmed trap).
+      <param name="TrapFormat" value="v2c Trap" />
+
+      *** IP address (numeric or FQDN) of SNMP NMS (Network Management Station), which is the host that will receive SNMP traps.
+      <param name="Server" value="" />
+
+      *** Alarm states which cause sending of per-alarm SNMP traps.
+      <param name="Trigger" value="Active" />
+
+      *** Period for sending alarm SNMP traps in minutes/seconds.
+      <param name="Period" value="01m 00s" />
+
+      *** Enables or disables sending of alarm overview SNMP traps.
+      <param name="SendOverview" value="Enabled" />
+
+    </group>
+
+    <group name="EchoAgent">
+      *** Enable/Disable EchoVault agent.
+      <param name="Enabled" value="Disabled" />
+
+      *** IP address (numeric or FQDN) of the primary EchoVault controller.
+      <param name="Controller1" value="" />
+
+      *** IP address (numeric or FQDN) of the secondary EchoVault controller. Optional parameter.
+      <param name="Controller2" value="" />
+
+      *** Selects the protocol used by the agent to connect to the controller.
+      <param name="Protocol" value="Https" />
+
+      *** Selects the port used by the agent to connect to the controller.
+      <param name="Port" value="80" />
+
+      *** Password for the EchoAgent. On the first time you will need to use the registration password, after that the EchoVault controller will assign an agent-specific password.
+      <param name="Password" value="" />
+
+    </group>
+
+  </group>
+
+  <group name="Charge">
+    *** Rectifier voltage during float charge. Float charge is the default charge state.
+    <param name="FloatV" value="54.480000" />
+
+    <group name="Ccc">
+      *** Defines whether Battery Charge Current Control is enabled.
+      <param name="Enabled" value="Enabled" />
+
+      *** Limit for total battery charge current. Rectifier output voltage is controlled to keep charge current below this limit. Battery current measurement devices have their invidual charge limits.
+      <param name="ChargeCurrLimit" value="500.000000" />
+
+      *** Control gain value for Charge Current Limit operating in fast mode. Smaller value makes charge current control more stable, bigger value makes it faster.
+      <param name="FastChargeCurrLimitGain" value="5.000000" />
+
+      *** Control gain value for Charge Current Limit operating in slow mode. Smaller value makes charge current control more stable, bigger value makes it faster.
+      <param name="SlowChargeCurrLimitGain" value="1.000000" />
+
+      *** Internal use only.
+      <param name="CclPTerm" value="1.000000" />
+
+      *** Internal use only.
+      <param name="CclITerm" value="1.000000" />
+
+      *** Internal use only.
+      <param name="CclDTerm" value="1.000000" />
+
+    </group>
+
+    <group name="Bc">
+      <group name="Manual">
+        *** Maximum Manual Boost Charge time.
+        <param name="MaxMinutes" value="20h 00m" />
+
+      </group>
+
+      <group name="Periodic">
+        *** Defines whether Periodic Boost Charge is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Maximum Periodic Boost Charge time.
+        <param name="MaxMinutes" value="00h 30m" />
+
+        *** Number of times Periodic Boost Charge is performed in a year.
+        <param name="TimesInYear" value="2" />
+
+      </group>
+
+      <group name="Automatic">
+        *** Defines whether Automatic Boost Charge is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Maximum Automatic Boost Charge time.
+        <param name="MaxMinutes" value="20h 00m" />
+
+        *** Automatic Boost Charging is activated if battery charge current exceeds Start Current after a mains fault.
+        <param name="StartCurrent" value="50.000000" />
+
+        *** Automatic Boost Charging is deactivated if battery charge current drops below Stop Current.
+        <param name="StopCurrent" value="25.000000" />
+
+      </group>
+
+      <group name="Remote">
+        *** Defines whether Remote Boost Charge is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Maximum Remote Boost Charge time.
+        <param name="MaxMinutes" value="00h 30m" />
+
+        *** When Enabled, RBC will remain active after start until time limit is reached, regardless of the state of the control signal. When Disabled, RBC will be stopped also when control signal deactivates.
+        <param name="Latching" value="Enabled" />
+
+      </group>
+
+      *** Rectifier output voltage during Boost Charging.
+      <param name="BoostV" value="57.600002" />
+
+      *** Minimum battery temperature for Boost Charge operation.
+      <param name="MinTemp" value="0.0" />
+
+      *** Maximum battery temperature for Boost Charge operation.
+      <param name="MaxTemp" value="30.0" />
+
+    </group>
+
+    <group name="Tc">
+      *** Defines whether Temperature Compensation is enabled.
+      <param name="Enabled" value="Enabled" />
+
+      *** Temperature to voltage ratio of Temperature Compensation.
+      <param name="VPerCelsius" value="0.072000" />
+
+      *** Maximum charge voltage when using Temperature Compensation.
+      <param name="VoltMax" value="57.600002" />
+
+      *** Minimum charge voltage when using Temperature Compensation.
+      <param name="VoltMin" value="43.199997" />
+
+      *** The temperature at which Temperature Compensation does not have effect on the charge voltage.
+      <param name="NomTemp" value="20.0" />
+
+    </group>
+
+  </group>
+
+  <group name="Bt">
+    <group name="Manual">
+      *** Manual Battery Test is stopped when battery voltage drops below Stop Voltage and Ignore Time has passed.
+      <param name="StopV" value="48.000000" />
+
+      *** Manual Battery Test testing time in hours / minutes. The test ends successfully when the time limit is reached. The BT Ignore Time specifies the minimum value for this parameter.
+      <param name="TimeLimit" value="01h 00m" />
+
+      *** Maximum battery discarge limit for Manual Battery Test in Ampere hours. The test ends successfully when the discharge limit is reached. Set to zero to disable the limit.
+      <param name="AhLimit" value="500.000000" />
+
+    </group>
+
+    <group name="Periodic">
+      *** Defines whether Periodic Battery Test is enabled.
+      <param name="Enabled" value="Disabled" />
+
+      *** Number of times Periodic Battery Test is performed in a year.
+      <param name="TimesInYear" value="2" />
+
+      *** Periodic Battery Test is stopped when battery voltage drops below Stop Voltage and Ignore Time has passed.
+      <param name="StopV" value="48.000000" />
+
+      *** Periodic Battery Test testing time in hours / minutes. The test ends successfully when the time limit is reached. The BT Ignore Time specifies the minimum value for this parameter.
+      <param name="TimeLimit" value="01h 00m" />
+
+      *** Maximum battery discarge limit for Periodic Battery Test in Ampere hours. The test ends successfully when the discharge limit is reached. Set to zero to disable the limit.
+      <param name="AhLimit" value="500.000000" />
+
+      <group name="TimeWins">
+        *** PBT can be started on Monday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="MondayTimeWin" value="00:00 - 23:59" />
+
+        *** PBT can be started on Tuesday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="TuesdayTimeWin" value="00:00 - 23:59" />
+
+        *** PBT can be started on Wednesday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="WednesdayTimeWin" value="00:00 - 23:59" />
+
+        *** PBT can be started on Thursday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="ThursdayTimeWin" value="00:00 - 23:59" />
+
+        *** PBT can be started on Friday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="FridayTimeWin" value="00:00 - 23:59" />
+
+        *** PBT can be started on Saturday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="SaturdayTimeWin" value="00:00 - 23:59" />
+
+        *** PBT can be started on Sunday in this time window (starthour:startminutes - stophour:stopminutes).
+        <param name="SundayTimeWin" value="00:00 - 23:59" />
+
+      </group>
+
+      <group name="ForbiddenDays">
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day1" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day2" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day3" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day4" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day5" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day6" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day7" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day8" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day9" value="00.00" />
+
+        *** PBT is not allowed to start in this day of the year (month.day).
+        <param name="Day10" value="00.00" />
+
+      </group>
+
+    </group>
+
+    <group name="Natural">
+      *** Defines whether Natural Battery Test is enabled.
+      <param name="Enabled" value="Disabled" />
+
+      *** Natural Battery Test is stopped when battery voltage drops below Stop Voltage and Ignore Time has passed.
+      <param name="StopV" value="48.000000" />
+
+      *** Natural Battery Test testing time in hours / minutes. The test ends successfully when the time limit is reached. The BT Ignore Time specifies the minimum value for this parameter.
+      <param name="TimeLimit" value="01h 00m" />
+
+      *** Maximum battery discarge limit for Natural Battery Test in Ampere hours. The test ends successfully when the discharge limit is reached. Set to zero to disable the limit.
+      <param name="AhLimit" value="500.000000" />
+
+    </group>
+
+    <group name="Remote">
+      *** Defines whether Remote Battery Test is enabled.
+      <param name="Enabled" value="Enabled" />
+
+      *** When Enabled, RBT will remain active after start until time, discharge or voltage limit is reached, regardless of the state of the control signal. When Disabled, RBT will be stopped also when control signal deactivates.
+      <param name="Latching" value="Enabled" />
+
+      *** Remote Battery Test is stopped when battery voltage drops below Stop Voltage and Ignore Time has passed.
+      <param name="StopV" value="48.000000" />
+
+      *** Remote Battery Test testing time in hours / minutes. The test ends successfully when the time limit is reached. The BT Ignore Time specifies the minimum value for this parameter.
+      <param name="TimeLimit" value="01h 00m" />
+
+      *** Maximum battery discarge limit for Remote Battery Test in Ampere hours. The test ends successfully when the discharge limit is reached. Set to zero to disable the limit.
+      <param name="AhLimit" value="500.000000" />
+
+    </group>
+
+    *** Settling time in the beginning of the test during which Stop Voltage is ignored.
+    <param name="IgnoreTime" value="00h 15m" />
+
+    *** Battery Test is always stopped when battery voltage drops below Shutdown Voltage
+    <param name="ShutdownV" value="45.359997" />
+
+    *** Minimum charge time before Battery Test can be started after a mains fault.
+    <param name="PrechargeTime" value="03h 00m" />
+
+  </group>
+
+  <group name="LvdDefaults">
+    <group name="Load">
+      *** LVD Control mode defines the basis for connecting and disconnecting the LVD contactor. Voltage: system voltage. Time: mains fault duration. Discharge: battery discharge during mains fault.
+      <param name="ControlMode" value="Voltage" />
+
+      *** This must be set according to the type of the LVD contactor used.
+      <param name="ContactorType" value="Latching" />
+
+      *** LVD contactor is disconnected when system voltage drops below this threshold.
+      <param name="DisconnectV" value="43.200001" />
+
+      *** LVD contactor is connected when system voltage rises above this threshold.
+      <param name="PickupV" value="48.000000" />
+
+      *** LVD contactor is disconnected after given amount of time has passed since beginning of a mains fault.
+      <param name="DisconnectT" value="00h 10m" />
+
+      *** LVD contactor is disconnected after given amount of ampere-hours has been discharged from batteries.
+      <param name="DisconnectAh" value="83.333336" />
+
+    </group>
+
+    <group name="Batt">
+      *** LVD Control mode defines the basis for connecting and disconnecting the LVD contactor. Voltage: system voltage. Time: mains fault duration. Discharge: battery discharge during mains fault.
+      <param name="ControlMode" value="Time" />
+
+      *** This must be set according to the type of the LVD contactor used.
+      <param name="ContactorType" value="Latching" />
+
+      *** LVD contactor is disconnected when system voltage drops below this threshold.
+      <param name="DisconnectV" value="43.200001" />
+
+      *** LVD contactor is connected when system voltage rises above this threshold.
+      <param name="PickupV" value="48.000000" />
+
+      *** LVD contactor is disconnected after given amount of time has passed since beginning of a mains fault.
+      <param name="DisconnectT" value="00h 10m" />
+
+      *** LVD contactor is disconnected after given amount of ampere-hours has been discharged from batteries.
+      <param name="DisconnectAh" value="83.333336" />
+
+    </group>
+
+  </group>
+
+  <group name="Inverters">
+    *** Defines the default AC source of the bypass switch.
+    <param name="BypassMode" value="Inverters" />
+
+    *** Defines the nominal voltage of the inverters.
+    <param name="AcVoltGroup" value="230V" />
+
+    *** Minimum mains AC voltage which bypass switch accepts before switching to inverter supply.
+    <param name="MainsMinV" value="185.000000" />
+
+    *** Maximum mains AC voltage which bypass switch accepts before switching to inverter supply.
+    <param name="MainsMaxV" value="250.000000" />
+
+    *** Inverters DC supply low voltage disconnect voltage. If system DC voltage drops below this limit, the inverters will be shut down to save batteries.
+    <param name="LvDisconnectV" value="43.200001" />
+
+    *** Inverters DC supply low voltage pickup voltage. After a low voltage disconnect, the inverters will be activated again when system DC voltage exceeds this limit.
+    <param name="LvPickupV" value="48.000000" />
+
+    *** AC output voltage setpoint for the inverters.
+    <param name="AcSetpointV" value="230.000000" />
+
+    *** AC output frequency for the inverters.
+    <param name="AcSetpointF" value="50 Hz" />
+
+    *** Internal over temperature alarm limit.
+    <param name="OtAlarmLim" value="65.0" />
+
+    *** Enable/disable AC output Earth Fault Detection. Should not be enabled if there is a bypass module installed.
+    <param name="EfdEnabled" value="Disabled" />
+
+  </group>
+
+  <group name="Alarm">
+    <group name="Sys">
+      <group name="SysOverTemp">
+        *** Defines whether System Over Temperature is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for System Over Temperature.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for System Over Temperature.
+        <param name="AlarmRelays" value="1" />
+
+        *** Temperature limit for System Over Temperature.
+        <param name="Limit" value="60.0" />
+
+      </group>
+
+      <group name="SysLowVoltage">
+        *** Defines whether Low System Voltage is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Low System Voltage.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Low System Voltage.
+        <param name="AlarmRelays" value="1" />
+
+        *** Voltage limit for Low System Voltage.
+        <param name="Limit" value="48.000000" />
+
+      </group>
+
+      <group name="SysHighVoltage">
+        *** Defines whether High System Voltage is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for High System Voltage.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for High System Voltage.
+        <param name="AlarmRelays" value="1" />
+
+        *** Voltage limit for High System Voltage.
+        <param name="Limit" value="60.000000" />
+
+      </group>
+
+      <group name="MainsFault">
+        *** Defines whether Mains Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Mains Fault.
+        <param name="AlarmDelay" value="00m 03s" />
+
+        *** Defines output relay list for Mains Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="ChrVoltDev">
+        *** Defines whether Charge Voltage Deviation is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Charge Voltage Deviation.
+        <param name="AlarmDelay" value="10m 00s" />
+
+        *** Defines output relay list for Charge Voltage Deviation.
+        <param name="AlarmRelays" value="1" />
+
+        *** Maximum deviation percent from the charge voltage.
+        <param name="Limit" value="5.000000" />
+
+      </group>
+
+      <group name="InvMainsFault">
+        *** Defines whether Bypass Mains Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Bypass Mains Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Bypass Mains Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="PhaseFault">
+        *** Defines whether Phase Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Phase Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Phase Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="InvertersFault">
+        *** Defines whether Inverter System Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Inverter System Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Inverter System Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="NoRectRedundancy">
+        *** Defines whether Rectifiers Overload is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Rectifiers Overload.
+        <param name="AlarmDelay" value="01m 01s" />
+
+        *** Defines output relay list for Rectifiers Overload.
+        <param name="AlarmRelays" value="1" />
+
+        *** Minimum number of redundant rectifiers for Rectifiers Overload.
+        <param name="Limit" value="1" />
+
+      </group>
+
+      <group name="NoInvRedundancy">
+        *** Defines whether Inverters Overload is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Inverters Overload.
+        <param name="AlarmDelay" value="30m 00s" />
+
+        *** Defines output relay list for Inverters Overload.
+        <param name="AlarmRelays" value="1" />
+
+        *** Minimum number of redundant rectifiers for Inverters Overload.
+        <param name="Limit" value="1" />
+
+      </group>
+
+      <group name="BusFault">
+        *** Defines whether Bus Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Bus Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Bus Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="DcpBusFault">
+        *** Defines whether DCP Bus Fault is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for DCP Bus Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for DCP Bus Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="InventoryFull">
+        *** Defines whether Inventory Full is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Inventory Full.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Inventory Full.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="IsolationFault">
+        *** Defines whether Earth Fault is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Earth Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Earth Fault.
+        <param name="AlarmRelays" value="1" />
+
+        *** Earth fault alarm threshold resistance. The alarm is activated if the measured power line to PE resistance is less than the given value.
+        <param name="Threshold" value="100 kOhm" />
+
+      </group>
+
+      <group name="BoostChargeActive">
+        *** Defines whether Boost Charge Active is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Boost Charge Active.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Boost Charge Active.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="CfgConflict">
+        *** Defines whether Configuration Conflict is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Configuration Conflict.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Configuration Conflict.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+    </group>
+
+    <group name="Mod">
+      <group name="RectFault">
+        *** Defines whether Rectifier Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Rectifier Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Rectifier Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="RectOv">
+        *** Defines whether Rectifier Over Voltage is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Rectifier Over Voltage.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Rectifier Over Voltage.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="RectOt">
+        *** Defines whether Rectifier Over Temperature is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Rectifier Over Temperature.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Rectifier Over Temperature.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="RectMf">
+        *** Defines whether Rectifier Mains Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Rectifier Mains Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Rectifier Mains Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="RectWV">
+        *** Defines whether Rectifier Wrong Voltage Version is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Rectifier Wrong Voltage Version.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Rectifier Wrong Voltage Version.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="CommError">
+        *** Defines whether Communication Error is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Communication Error.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Communication Error.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="ModuleFault">
+        *** Defines whether Module Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Module Fault.
+        <param name="AlarmDelay" value="00m 20s" />
+
+        *** Defines output relay list for Module Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="InvFault">
+        *** Defines whether Inverter Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Inverter Fault.
+        <param name="AlarmDelay" value="00m 20s" />
+
+        *** Defines output relay list for Inverter Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="BpFault">
+        *** Defines whether Bypass Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Bypass Fault.
+        <param name="AlarmDelay" value="00m 20s" />
+
+        *** Defines output relay list for Bypass Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="NvramFault">
+        *** Defines whether NvRam Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for NvRam Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for NvRam Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="ConfigFault">
+        *** Defines whether Config Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Config Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Config Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="BadFirmware">
+        *** Defines whether Bad Firmware is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Bad Firmware.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Bad Firmware.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+    </group>
+
+    <group name="Batt">
+      <group name="AbcFault">
+        *** Defines whether Automatic Boost Charge Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Automatic Boost Charge Fault.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Automatic Boost Charge Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="BtFault">
+        *** Defines whether Battery Test Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery Test Fault.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Battery Test Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="LowBlockV">
+        *** Defines whether Battery Block Low Voltage is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery Block Low Voltage.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Battery Block Low Voltage.
+        <param name="AlarmRelays" value="1" />
+
+        *** Voltage limit for Battery Block Low Voltage.
+        <param name="Limit" value="10.799999" />
+
+      </group>
+
+      <group name="HighBlockV">
+        *** Defines whether Battery Block High Voltage is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery Block High Voltage.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Battery Block High Voltage.
+        <param name="AlarmRelays" value="1" />
+
+        *** Voltage limit for Battery Block High Voltage.
+        <param name="Limit" value="15.000000" />
+
+      </group>
+
+      <group name="BattOt">
+        *** Defines whether Battery Over Temperature is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Battery Over Temperature.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Battery Over Temperature.
+        <param name="AlarmRelays" value="1" />
+
+        *** Temperature limit for Battery Over Temperature.
+        <param name="Limit" value="30.0" />
+
+      </group>
+
+      <group name="BtStrAsym">
+        *** Defines whether Battery String Asymmetry is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Battery String Asymmetry.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Battery String Asymmetry.
+        <param name="AlarmRelays" value="1" />
+
+        *** Battery string asymmetry limit for Battery String Asymmetry.
+        <param name="Limit" value="5.000000" />
+
+      </group>
+
+    </group>
+
+    <group name="Lvd">
+      <group name="LoadLvdDisconWarn">
+        *** Defines whether Load LVD Disconnect Warning is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Load LVD Disconnect Warning.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Load LVD Disconnect Warning.
+        <param name="AlarmRelays" value="1" />
+
+        *** Load LVD Disconnect Warning will be activated if voltage difference to disconnect voltage of Load LVD is lower than this value and Load LVD is in voltage control mode.
+        <param name="VoltageMargin" value="2.400000" />
+
+        *** Load LVD Disconnect Warning will be activated when time to disconnect is less than this value and Load LVD is in time control mode.
+        <param name="TimeMargin" value="00h 10m" />
+
+        *** Load LVD Disconnect Warning will be activated when Load LVD is in Discharge control mode and the difference of battery discharge and LVD Disconnect Ah Limit is less than this value.
+        <param name="ChargeMargin" value="83.330002" />
+
+      </group>
+
+      <group name="LoadLvdDisconImm">
+        *** Defines whether Load LVD Disconnect Imminent is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Load LVD Disconnect Imminent.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Load LVD Disconnect Imminent.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="BattLvdDisconWarn">
+        *** Defines whether Battery LVD Disconnect Warning is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery LVD Disconnect Warning.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Battery LVD Disconnect Warning.
+        <param name="AlarmRelays" value="1" />
+
+        *** Battery LVD Disconnect Warning will be activated if voltage difference to disconnect voltage of Battery LVD is lower than this value and Battery LVD is in voltage control mode.
+        <param name="VoltageMargin" value="2.400000" />
+
+        *** Battery LVD Disconnect Warning will be activated when time to disconnect is less than this value and Battery LVD is in time control mode.
+        <param name="TimeMargin" value="00h 10m" />
+
+        *** Battery LVD Disconnect Warning will be activated when Battery LVD is in Discharge control mode and the difference of battery discharge and LVD Disconnect Ah Limit is less than this value.
+        <param name="ChargeMargin" value="83.330002" />
+
+      </group>
+
+      <group name="BattLvdDisconImm">
+        *** Defines whether Battery LVD Disconnect Imminent is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery LVD Disconnect Imminent.
+        <param name="AlarmDelay" value="00m 01s" />
+
+        *** Defines output relay list for Battery LVD Disconnect Imminent.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="ContactorFault">
+        *** Defines whether Contactor Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Contactor Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Contactor Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+    </group>
+
+    <group name="Dev">
+      <group name="BtFuseFault">
+        *** Defines whether Battery Fuse Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery Fuse Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Battery Fuse Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="LdFuseFault">
+        *** Defines whether Load Fuse Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Load Fuse Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Load Fuse Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="ShuntFault">
+        *** Defines whether Current Shunt Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Current Shunt Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Current Shunt Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="BtsFault">
+        *** Defines whether Battery Temperature Sensor Fault is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Battery Temperature Sensor Fault.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Battery Temperature Sensor Fault.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="NoBts">
+        *** Defines whether No Battery Temperature Sensor is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for No Battery Temperature Sensor.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for No Battery Temperature Sensor.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="NoSts">
+        *** Defines whether No System Temperature Sensor is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for No System Temperature Sensor.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for No System Temperature Sensor.
+        <param name="AlarmRelays" value="1" />
+
+      </group>
+
+      <group name="ExtAlarm1">
+        *** Defines whether Ext. Alarm Group 1 is enabled.
+        <param name="Enabled" value="Enabled" />
+
+        *** Defines activation delay time for Ext. Alarm Group 1.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Ext. Alarm Group 1.
+        <param name="AlarmRelays" value="1,2" />
+
+        *** Defines list of external alarm inputs for this alarm group.
+        <param name="DeviceList" value="2" />
+
+      </group>
+
+      <group name="ExtAlarm2">
+        *** Defines whether Ext. Alarm Group 2 is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Ext. Alarm Group 2.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Ext. Alarm Group 2.
+        <param name="AlarmRelays" value="1" />
+
+        *** Defines list of external alarm inputs for this alarm group.
+        <param name="DeviceList" value="2" />
+
+      </group>
+
+      <group name="ExtAlarm3">
+        *** Defines whether Ext. Alarm Group 3 is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Ext. Alarm Group 3.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Ext. Alarm Group 3.
+        <param name="AlarmRelays" value="1" />
+
+        *** Defines list of external alarm inputs for this alarm group.
+        <param name="DeviceList" value="3" />
+
+      </group>
+
+      <group name="ExtAlarm4">
+        *** Defines whether Ext. Alarm Group 4 is enabled.
+        <param name="Enabled" value="Disabled" />
+
+        *** Defines activation delay time for Ext. Alarm Group 4.
+        <param name="AlarmDelay" value="00m 10s" />
+
+        *** Defines output relay list for Ext. Alarm Group 4.
+        <param name="AlarmRelays" value="1" />
+
+        *** Defines list of external alarm inputs for this alarm group.
+        <param name="DeviceList" value="4" />
+
+      </group>
+
+    </group>
+
+  </group>
+
+  <group name="DateTime">
+    *** Enable/Disable use of NTP time server.
+    <param name="UseTimeServer" value="Enabled" />
+
+    *** IP address of currently selected time server. Can be a fully-qualified host name or numeric IP address.
+    <param name="CurrentTimeServer" value="" />
+
+    *** IP address of user defined time server. Can be a fully-qualified host name or numeric IP address.
+    <param name="UserDefTimeServer" value="172.16.22.129" />
+
+    *** Current time zone.
+    <param name="CurrentTimeZone" value="Asia/Almaty" />
+
+  </group>
+
+</parameters>
