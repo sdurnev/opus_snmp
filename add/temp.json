@@ -1,0 +1,9 @@
+{
+  "bcmSystemVoltage": 54.29,
+  "bcmLoadCurrent": 0.20,
+  "bcmBatteryCurrent": 0.00,
+  "bcmTotalRectifierCurrent": 0.20,
+  "bcmTotalInverterCurrent": 0.00,
+  "bcmMaxBatteryTemperature": 22.75,
+  "bcmMaxSystemTemperature": 40.10
+}
