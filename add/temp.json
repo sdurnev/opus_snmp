@@ -4,6 +4,7 @@
   "bcmBatteryCurrent": 0.00,
   "bcmTotalRectifierCurrent": 0.20,
   "bcmTotalInverterCurrent": 0.00,
-  "bcmMaxBatteryTemperature": 22.75,
-  "bcmMaxSystemTemperature": 40.10
+  "bcmMaxBatteryTemperature": 22.67,
+  "bcmMaxSystemTemperature": 40.10,
+  "version": "0.00.1"
 }
