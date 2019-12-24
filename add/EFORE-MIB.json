@@ -1,0 +1,703 @@
+{
+  "imports": {
+    "class": "imports",
+    "SNMPv2-CONF": [
+      "NOTIFICATION-GROUP",
+      "MODULE-COMPLIANCE"
+    ],
+    "SNMPv2-MIB": [
+      "sysLocation"
+    ],
+    "SNMPv2-SMI": [
+      "Integer32",
+      "OBJECT-TYPE",
+      "NOTIFICATION-TYPE",
+      "MibIdentifier",
+      "IpAddress",
+      "TimeTicks",
+      "Counter64",
+      "Unsigned32",
+      "enterprises",
+      "MODULE-IDENTITY",
+      "Gauge32",
+      "iso",
+      "OBJECT-IDENTITY",
+      "Bits",
+      "Counter32"
+    ],
+    "SNMPv2-TC": [
+      "DisplayString",
+      "TruthValue",
+      "TimeInterval",
+      "TEXTUAL-CONVENTION",
+      "DateAndTime"
+    ]
+  },
+  "efore": {
+    "name": "efore",
+    "oid": "1.3.6.1.4.1.26896",
+    "class": "moduleidentity",
+    "revisions": [
+      {
+        "revision": "2017-01-23 00:00",
+        "description": "MIB compliance fixes. Validated using smilint 0.5.0"
+      },
+      {
+        "revision": "2014-05-30 00:00",
+        "description": "Defined new objects for battery controller operation, measurement and alarm log reading. Fixed IMPORTS and few other SMIv2 issues. Removed unimplemented and unused objects. Cleaned up whitespace and indentation."
+      },
+      {
+        "revision": "2010-04-14 00:00",
+        "description": "Made some corrections to provide wider compatibility. Validated using smilint 0.4.7"
+      }
+    ],
+    "lastupdated": "201701230000Z",
+    "organization": "Efore Ltd",
+    "contactinfo": "email: technical.support@efore.fi",
+    "description": "Efore Ltd MIB Module. Current release supports OPUS/VIDI+ SNMP Interface."
+  },
+  "eforeSystems": {
+    "name": "eforeSystems",
+    "oid": "1.3.6.1.4.1.26896.1",
+    "class": "objectidentity"
+  },
+  "vidi": {
+    "name": "vidi",
+    "oid": "1.3.6.1.4.1.26896.1.1",
+    "class": "objectidentity"
+  },
+  "batteryControllerOperation": {
+    "name": "batteryControllerOperation",
+    "oid": "1.3.6.1.4.1.26896.1.2",
+    "class": "objectidentity"
+  },
+  "batteryControllerMeasurement": {
+    "name": "batteryControllerMeasurement",
+    "oid": "1.3.6.1.4.1.26896.1.3",
+    "class": "objectidentity"
+  },
+  "batteryControllerAlarm": {
+    "name": "batteryControllerAlarm",
+    "oid": "1.3.6.1.4.1.26896.1.4",
+    "class": "objectidentity"
+  },
+  "IntegerMilliUnitsTC": {
+    "name": "IntegerMilliUnitsTC",
+    "class": "textualconvention",
+    "type": {
+      "type": "Integer32",
+      "class": "type"
+    },
+    "displayhint": "d-3",
+    "status": "current",
+    "description": "Integer expressed in milliunits"
+  },
+  "AlarmTypeTC": {
+    "name": "AlarmTypeTC",
+    "class": "textualconvention",
+    "type": {
+      "type": "INTEGER",
+      "class": "type",
+      "constraints": {
+        "enumeration": {
+          "batteryLvdDisconnectImminent": 204,
+          "floatChargeDeviation": 6,
+          "inverterSystemMainsFault": 7,
+          "highSystemVoltage": 5,
+          "earthFault": 21,
+          "bypassFault": 123,
+          "batteryTestFault": 135,
+          "externalAlarmGroup1": 301,
+          "systemOverTemperature": 29,
+          "phaseFault": 3,
+          "automaticBoostChargeFault": 134,
+          "inventoryFull": 43,
+          "externalAlarmGroup2": 302,
+          "unspecifiedAlarm": 1,
+          "badFirmware": 105,
+          "moduleFault": 104,
+          "lowSystemVoltage": 4,
+          "batteryFuseFault": 23,
+          "boostChargeActive": 41,
+          "batteryTemperatureSensorFault": 138,
+          "inverterSystemFault": 121,
+          "noBatteryTemperatureSensor": 137,
+          "rectifierOverTemperature": 113,
+          "batteryBlockLowVoltage": 131,
+          "rectifierOverload": 24,
+          "dcpBusFault": 27,
+          "batteryLvdDisconnectWarning": 203,
+          "externalAlarmGroup3": 304,
+          "inverterOverload": 25,
+          "loadLvdDisconnectImminent": 202,
+          "noSystemTemperatureSensor": 30,
+          "mainsFault": 2,
+          "batteryBlockHighVoltage": 132,
+          "rectifierFault": 111,
+          "loadLvdDisconnectWarning": 201,
+          "configurationConflict": 42,
+          "shuntFault": 28,
+          "externalAlarmGroup4": 305,
+          "rectifierOverVoltage": 112,
+          "batteryStringAsymmetry": 133,
+          "busFault": 26,
+          "rectifierWrongVoltage": 115,
+          "rectifierMainsFault": 114,
+          "nvramFault": 102,
+          "loadFuseFault": 22,
+          "batteryOverTemperature": 136,
+          "inverterFault": 122,
+          "communicationError": 101,
+          "configFault": 103,
+          "contactorFault": 205
+        }
+      }
+    },
+    "status": "current",
+    "description": "Enumeration of alarm type codes"
+  },
+  "vidiAlarmId": {
+    "name": "vidiAlarmId",
+    "oid": "1.3.6.1.4.1.26896.1.1.100",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "Integer32",
+      "class": "type"
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Serial number of alarm"
+  },
+  "vidiAlarmMessage": {
+    "name": "vidiAlarmMessage",
+    "oid": "1.3.6.1.4.1.26896.1.1.101",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "DisplayString",
+      "class": "type",
+      "constraints": {
+        "size": [
+          {
+            "min": 0,
+            "max": 128
+          }
+        ]
+      }
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Alarm information"
+  },
+  "vidiAlarmCode": {
+    "name": "vidiAlarmCode",
+    "oid": "1.3.6.1.4.1.26896.1.1.102",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "AlarmTypeTC",
+      "class": "type"
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Alarm code"
+  },
+  "vidiAlarmState": {
+    "name": "vidiAlarmState",
+    "oid": "1.3.6.1.4.1.26896.1.1.103",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "INTEGER",
+      "class": "type",
+      "constraints": {
+        "enumeration": {
+          "active": 1,
+          "non-active": 2
+        }
+      }
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Alarm state"
+  },
+  "vidiAlarmAckState": {
+    "name": "vidiAlarmAckState",
+    "oid": "1.3.6.1.4.1.26896.1.1.104",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "INTEGER",
+      "class": "type",
+      "constraints": {
+        "enumeration": {
+          "ack": 1,
+          "non-ack": 2
+        }
+      }
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Alarm acknowledgement state"
+  },
+  "vidiAlarmStartTime": {
+    "name": "vidiAlarmStartTime",
+    "oid": "1.3.6.1.4.1.26896.1.1.105",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "DisplayString",
+      "class": "type",
+      "constraints": {
+        "size": [
+          {
+            "min": 0,
+            "max": 32
+          }
+        ]
+      }
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Time of the last activation of the alarm, in format DD.MM.YYYY HH:MM:SS"
+  },
+  "vidiAlarmDuration": {
+    "name": "vidiAlarmDuration",
+    "oid": "1.3.6.1.4.1.26896.1.1.106",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "DisplayString",
+      "class": "type",
+      "constraints": {
+        "size": [
+          {
+            "min": 0,
+            "max": 32
+          }
+        ]
+      }
+    },
+    "maxaccess": "accessible-for-notify",
+    "status": "current",
+    "description": "Duration of alarm in format hh:mm:ss"
+  },
+  "vidiNumActiveAlarms": {
+    "name": "vidiNumActiveAlarms",
+    "oid": "1.3.6.1.4.1.26896.1.1.110",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "Integer32",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Number of currently active alarms"
+  },
+  "vidiNumNonAckAlarms": {
+    "name": "vidiNumNonAckAlarms",
+    "oid": "1.3.6.1.4.1.26896.1.1.111",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "Integer32",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Number of currently non-acknowledged alarms"
+  },
+  "vidiAlarmRelays": {
+    "name": "vidiAlarmRelays",
+    "oid": "1.3.6.1.4.1.26896.1.1.112",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "Integer32",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Bitfield indicating activated alarm relays"
+  },
+  "vidiAlarmTrap": {
+    "name": "vidiAlarmTrap",
+    "oid": "1.3.6.1.4.1.26896.1.1.10",
+    "class": "notificationtype",
+    "objects": [
+      {
+        "object": "sysLocation",
+        "module": "SNMPv2-MIB"
+      },
+      {
+        "object": "vidiAlarmId",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmMessage",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmCode",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmState",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmAckState",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmStartTime",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmDuration",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmRelays",
+        "module": "EFORE-MIB"
+      }
+    ],
+    "status": "current",
+    "description": "VIDI Alarm Trap"
+  },
+  "vidiAlarmsOverviewTrap": {
+    "name": "vidiAlarmsOverviewTrap",
+    "oid": "1.3.6.1.4.1.26896.1.1.11",
+    "class": "notificationtype",
+    "objects": [
+      {
+        "object": "sysLocation",
+        "module": "SNMPv2-MIB"
+      },
+      {
+        "object": "vidiNumActiveAlarms",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiNumNonAckAlarms",
+        "module": "EFORE-MIB"
+      },
+      {
+        "object": "vidiAlarmRelays",
+        "module": "EFORE-MIB"
+      }
+    ],
+    "status": "current",
+    "description": "VIDI Alarms Overview Trap"
+  },
+  "bcoChargeState": {
+    "name": "bcoChargeState",
+    "oid": "1.3.6.1.4.1.26896.1.2.1",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "INTEGER",
+      "class": "type",
+      "constraints": {
+        "enumeration": {
+          "boostCharge": 3,
+          "batteryTest": 2,
+          "floatCharge": 1
+        }
+      }
+    },
+    "maxaccess": "read-write",
+    "status": "current",
+    "description": "Operational charging state"
+  },
+  "bcoTemperatureCompensation": {
+    "name": "bcoTemperatureCompensation",
+    "oid": "1.3.6.1.4.1.26896.1.2.2",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "TruthValue",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Flag indicating whether temperature compensation is in use or not"
+  },
+  "bcoTestMode": {
+    "name": "bcoTestMode",
+    "oid": "1.3.6.1.4.1.26896.1.2.3",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "INTEGER",
+      "class": "type",
+      "constraints": {
+        "enumeration": {
+          "manual": 3,
+          "periodic": 2,
+          "off": 1,
+          "natural": 4,
+          "remote": 5
+        }
+      }
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "If bcoChargeState is batteryTest this object specifies the detailed test mode which is active"
+  },
+  "bcoBoostChargeMode": {
+    "name": "bcoBoostChargeMode",
+    "oid": "1.3.6.1.4.1.26896.1.2.4",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "INTEGER",
+      "class": "type",
+      "constraints": {
+        "enumeration": {
+          "automatic": 2,
+          "periodic": 3,
+          "off": 1,
+          "remote": 5,
+          "manual": 4
+        }
+      }
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "If bcoChargeState is boostCharge this object specifies the detailed boost charge mode which is active"
+  },
+  "bcmSystemVoltage": {
+    "name": "bcmSystemVoltage",
+    "oid": "1.3.6.1.4.1.26896.1.3.1",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "V",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "System voltage"
+  },
+  "bcmLoadCurrent": {
+    "name": "bcmLoadCurrent",
+    "oid": "1.3.6.1.4.1.26896.1.3.2",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "A",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Load current"
+  },
+  "bcmBatteryCurrent": {
+    "name": "bcmBatteryCurrent",
+    "oid": "1.3.6.1.4.1.26896.1.3.3",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "A",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Battery current"
+  },
+  "bcmTotalRectifierCurrent": {
+    "name": "bcmTotalRectifierCurrent",
+    "oid": "1.3.6.1.4.1.26896.1.3.4",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "A",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Total rectifier current"
+  },
+  "bcmTotalInverterCurrent": {
+    "name": "bcmTotalInverterCurrent",
+    "oid": "1.3.6.1.4.1.26896.1.3.5",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "A",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Total inverter current"
+  },
+  "bcmMaxBatteryTemperature": {
+    "name": "bcmMaxBatteryTemperature",
+    "oid": "1.3.6.1.4.1.26896.1.3.6",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "C",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Maximum battery temperature"
+  },
+  "bcmMaxSystemTemperature": {
+    "name": "bcmMaxSystemTemperature",
+    "oid": "1.3.6.1.4.1.26896.1.3.7",
+    "nodetype": "scalar",
+    "class": "objecttype",
+    "syntax": {
+      "type": "IntegerMilliUnitsTC",
+      "class": "type"
+    },
+    "units": "C",
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Maximum system temperature"
+  },
+  "bcaAlarmTable": {
+    "name": "bcaAlarmTable",
+    "oid": "1.3.6.1.4.1.26896.1.4.1",
+    "nodetype": "table",
+    "class": "objecttype",
+    "maxaccess": "not-accessible",
+    "status": "current",
+    "description": "Table containing all alarms in log"
+  },
+  "bcaAlarmEntry": {
+    "name": "bcaAlarmEntry",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1",
+    "nodetype": "row",
+    "class": "objecttype",
+    "maxaccess": "not-accessible",
+    "indices": [
+      {
+        "module": "EFORE-MIB",
+        "object": "bcaAlarmSerial",
+        "implied": 0
+      }
+    ],
+    "status": "current",
+    "description": "Alarm table entry"
+  },
+  "bcaAlarmSerial": {
+    "name": "bcaAlarmSerial",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.1",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "Integer32",
+      "class": "type",
+      "constraints": {
+        "range": [
+          {
+            "min": -2147483648,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "maxaccess": "not-accessible",
+    "status": "current",
+    "description": "Alarm serial number - a monotonically increasing number which is used to uniquely identify the alarm log row."
+  },
+  "bcaAlarmType": {
+    "name": "bcaAlarmType",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.2",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "AlarmTypeTC",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Alarm type"
+  },
+  "bcaAlarmActive": {
+    "name": "bcaAlarmActive",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.3",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "TruthValue",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "True if alarm is currently in active state"
+  },
+  "bcaAlarmAcknowledged": {
+    "name": "bcaAlarmAcknowledged",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.4",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "TruthValue",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "True if alarm has been acknowledged"
+  },
+  "bcaAlarmActivateTime": {
+    "name": "bcaAlarmActivateTime",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.5",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "DateAndTime",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Time when the alarm was activated"
+  },
+  "bcaAlarmDuration": {
+    "name": "bcaAlarmDuration",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.6",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "TimeInterval",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Time how long the alarm has been active"
+  },
+  "bcaAlarmSources": {
+    "name": "bcaAlarmSources",
+    "oid": "1.3.6.1.4.1.26896.1.4.1.1.7",
+    "nodetype": "column",
+    "class": "objecttype",
+    "syntax": {
+      "type": "DisplayString",
+      "class": "type"
+    },
+    "maxaccess": "read-only",
+    "status": "current",
+    "description": "Textual description of alarm source(s)"
+  },
+  "meta": {
+    "comments": [
+      "ASN.1 source file:///usr/share/snmp/mibs/EFORE-MIB.txt",
+      "Produced by pysmi-0.3.4 at Tue Dec 24 13:48:15 2019",
+      "On host iMac-Stanislav.local platform Darwin version 19.2.0 by user svdu",
+      "Using Python version 2.7.16 (default, Sep  2 2019, 11:59:44) "
+    ],
+    "module": "EFORE-MIB"
+  }
+}
