@@ -142,7 +142,7 @@ func main() {
 			if i == 0 {
 				fmt.Printf("{")
 			}
-			fmt.Printf(" \"%s\": ", paramBCO[i])
+			fmt.Printf("\"%s\":", paramBCO[i])
 
 			// the Value of each variable returned by Get() implements
 			// interface{}. You could do a type switch...
@@ -168,14 +168,14 @@ func main() {
 		if err2 != nil {
 			log.Fatalf("Get() err: %v", err2)
 		}
-		fmt.Print("\n")
+		/*fmt.Print("\n")
 		fmt.Print(result)
-		fmt.Print("\n")
+		fmt.Print("\n")*/
 		for i, variable := range result.Variables {
 			if i == 0 {
 				fmt.Printf("{")
 			}
-			//fmt.Printf(" \"%s\": ", paramVIDI[i])
+			fmt.Printf("\"%s\":", paramVIDI[i])
 
 			// the Value of each variable returned by Get() implements
 			// interface{}. You could do a type switch...
