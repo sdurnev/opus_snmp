@@ -10,6 +10,7 @@ import (
 	g "github.com/soniah/gosnmp"
 	"log"
 	"math/big"
+	"time"
 )
 
 /*
@@ -95,6 +96,8 @@ func main() {
 	g.Default.Target = fmt.Sprint(*addressIP)
 	g.Default.Community = fmt.Sprint(*community)
 	g.Default.Port = uint16(int16(*tcpPort))
+	g.Default.Timeout = time.Duration(500) * time.Millisecond
+	g.Default.Retries = 3
 	var param int = *typeOfPar
 
 	if param == 1 {
