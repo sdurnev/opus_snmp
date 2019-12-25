@@ -14,8 +14,8 @@ Programm flags:
 -type - type of MIB sub-tree (defaut value 1):
 - 1 - batteryControllerMeasurement (BCM) sub-tree
 - 2 - batteryControllerOperation (BCO) sub-tree
-- 3 - vidi sub-tree **(not the full implementation of)**
-- 4 - batteryControllerAlarm sub-tree **(not the full implementation of)**
+- 3 - vidi sub-tree **(incomplete implementation for today)**
+- 4 - batteryControllerAlarm sub-tree **(incomplete implementation for today)**
 
 **Example:**
 
