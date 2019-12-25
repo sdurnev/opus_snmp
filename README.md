@@ -17,6 +17,10 @@ Programm flags:
 - 3 - vidi sub-tree **(incomplete implementation for today)**
 - 4 - batteryControllerAlarm sub-tree **(incomplete implementation for today)**
 
+![Image alt](https://github.com/sdurnev/opus_snmp/blob/master/add/mib_browser.png)
+
 **Example:**
 
 `opus_snmp -ip=192.168.10.10 -port=1161 -com=public -type=2`
+
+[]: https://github.com/sdurnev/opus_snmp/blob/master/add/mib_browser.png
