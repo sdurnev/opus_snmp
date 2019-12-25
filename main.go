@@ -175,7 +175,7 @@ func main() {
 			if i == 0 {
 				fmt.Printf("{")
 			}
-			fmt.Printf(" \"%s\": ", paramVIDI[i])
+			//fmt.Printf(" \"%s\": ", paramVIDI[i])
 
 			// the Value of each variable returned by Get() implements
 			// interface{}. You could do a type switch...
