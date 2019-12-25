@@ -5,6 +5,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	g "github.com/soniah/gosnmp"
 	"log"
@@ -85,11 +86,16 @@ func main() {
 		"vidiAlarmRelays",
 	}
 
-	// Default is a pointer to a GoSNMP struct that contains sensible defaults
-	// eg port 161, community public, etc
-	param := 3
-	g.Default.Target = "10.10.12.21"
-	g.Default.Community = "Public"
+	addressIP := flag.String("ip", "localhost", "a string")
+	tcpPort := flag.Uint("port", 161, "a Uint")
+	community := flag.String("com", "Public", "an string")
+	typeOfPar := flag.Int("type", 1, "an int")
+	flag.Parse()
+
+	g.Default.Target = fmt.Sprint(*addressIP)
+	g.Default.Community = fmt.Sprint(*community)
+	g.Default.Port = uint16(int16(*tcpPort))
+	var param int = *typeOfPar
 
 	if param == 1 {
 		err := g.Default.Connect()
@@ -98,11 +104,7 @@ func main() {
 		}
 		defer g.Default.Conn.Close()
 
-		//oids := []string{"1.3.6.1.2.1.1.4", "1.3.6.1.2.1.1.7"}
-		//oids := []string{".1.3.6.1.4.1.26896.1.1.106.0", ".1.3.6.1.4.1.26896.1.1.112.0"}
-		//oids := []string{".1.3.6.1.4.1.26896.1.1.111"}
 		oids := paramBCMmib
-
 		result, err2 := g.Default.GetNext(oids) // Get() accepts up to g.MAX_OIDS
 		if err2 != nil {
 			log.Fatalf("Get() err: %v", err2)
@@ -154,7 +156,6 @@ func main() {
 				fmt.Printf("%d,", g.ToBigInt(variable.Value))
 			}
 		}
-		fmt.Printf("\"version\": \"%s\"}", version)
 	}
 	if param == 3 {
 		err := g.Default.Connect()
@@ -163,7 +164,7 @@ func main() {
 		}
 		defer g.Default.Conn.Close()
 		oids := paramVIDImib
-		result, err2 := g.Default.Get(oids) // Get() accepts up to g.MAX_OIDS
+		result, err2 := g.Default.GetNext(oids) // Get() accepts up to g.MAX_OIDS
 		if err2 != nil {
 			log.Fatalf("Get() err: %v", err2)
 		}
@@ -188,6 +189,6 @@ func main() {
 				fmt.Printf("%d,", g.ToBigInt(variable.Value))
 			}
 		}
-		fmt.Printf("\"version\": \"%s\"}", version)
 	}
+	fmt.Printf("\"version\":\"%s\"}", version)
 }
