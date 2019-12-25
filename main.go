@@ -26,7 +26,8 @@ const version = "0.00.1"
 
 func main() {
 
-	paramBCMmib := []string{"1.3.6.1.4.1.26896.1.3.1",
+	paramBCMmib := []string{
+		"1.3.6.1.4.1.26896.1.3.1",
 		"1.3.6.1.4.1.26896.1.3.2",
 		"1.3.6.1.4.1.26896.1.3.3",
 		"1.3.6.1.4.1.26896.1.3.4",
@@ -34,7 +35,28 @@ func main() {
 		"1.3.6.1.4.1.26896.1.3.6",
 		"1.3.6.1.4.1.26896.1.3.7"}
 
-	paramBCM := [...]string{"bcmSystemVoltage",
+	paramBCOmib := []string{
+		"1.3.6.1.4.1.26896.1.2.1",
+		"1.3.6.1.4.1.26896.1.2.2",
+		"1.3.6.1.4.1.26896.1.2.3",
+		"1.3.6.1.4.1.26896.1.2.4",
+	}
+
+	paramVIDImib := []string{
+		"1.3.6.1.4.1.26896.1.1.100",
+		"1.3.6.1.4.1.26896.1.1.101",
+		"1.3.6.1.4.1.26896.1.1.102",
+		"1.3.6.1.4.1.26896.1.1.103",
+		"1.3.6.1.4.1.26896.1.1.104",
+		"1.3.6.1.4.1.26896.1.1.105",
+		"1.3.6.1.4.1.26896.1.1.106",
+		"1.3.6.1.4.1.26896.1.1.110",
+		"1.3.6.1.4.1.26896.1.1.111",
+		"1.3.6.1.4.1.26896.1.1.112",
+	}
+
+	paramBCM := [...]string{
+		"bcmSystemVoltage",
 		"bcmLoadCurrent",
 		"bcmBatteryCurrent",
 		"bcmTotalRectifierCurrent",
@@ -43,40 +65,129 @@ func main() {
 		"bcmMaxSystemTemperature",
 	}
 
+	paramBCO := [...]string{
+		"bcoChargeState",
+		"bcoTemperatureCompensation",
+		"bcoTestMode",
+		"bcoBoostChargeMode",
+	}
+
+	paramVIDI := []string{
+		"vidiAlarmId",
+		"vidiAlarmMessage",
+		"vidiAlarmCode",
+		"vidiAlarmState",
+		"vidiAlarmAckState",
+		"vidiAlarmStartTime",
+		"vidiAlarmDuration",
+		"vidiNumActiveAlarms",
+		"vidiNumNonAckAlarms",
+		"vidiAlarmRelays",
+	}
+
 	// Default is a pointer to a GoSNMP struct that contains sensible defaults
 	// eg port 161, community public, etc
+	param := 3
 	g.Default.Target = "10.10.12.21"
 	g.Default.Community = "Public"
-	err := g.Default.Connect()
-	if err != nil {
-		log.Fatalf("Connect() err: %v", err)
-	}
-	defer g.Default.Conn.Close()
 
-	oids := paramBCMmib
-	//oids := []string{"1.3.6.1.2.1.1.4", "1.3.6.1.2.1.1.7"}
-	//oids := []string{".1.3.6.1.4.1.26896.1.1.106.0", ".1.3.6.1.4.1.26896.1.1.112.0"}
-	//oids := []string{".1.3.6.1.4.1.26896.1.1.111"}
-
-	result, err2 := g.Default.GetNext(oids) // Get() accepts up to g.MAX_OIDS
-	if err2 != nil {
-		log.Fatalf("Get() err: %v", err2)
-	}
-
-	for i, variable := range result.Variables {
-		//fmt.Printf("%d: oid: %s ", i, variable.Name)
-		if i == 0 {
-			fmt.Printf("{")
+	if param == 1 {
+		err := g.Default.Connect()
+		if err != nil {
+			log.Fatalf("Connect() err: %v", err)
 		}
-		fmt.Printf("\"%s\":", paramBCM[i])
+		defer g.Default.Conn.Close()
 
-		a, _ := new(big.Float).SetInt(g.ToBigInt(variable.Value)).Float64()
-		c := a / float64(1000)
-		if i == len(result.Variables)-1 {
-			fmt.Printf("%.2f,", c)
-		} else {
-			fmt.Printf("%.2f,", c) //!!!!!!!!!!! походу это лишнее
+		//oids := []string{"1.3.6.1.2.1.1.4", "1.3.6.1.2.1.1.7"}
+		//oids := []string{".1.3.6.1.4.1.26896.1.1.106.0", ".1.3.6.1.4.1.26896.1.1.112.0"}
+		//oids := []string{".1.3.6.1.4.1.26896.1.1.111"}
+		oids := paramBCMmib
+
+		result, err2 := g.Default.GetNext(oids) // Get() accepts up to g.MAX_OIDS
+		if err2 != nil {
+			log.Fatalf("Get() err: %v", err2)
+		}
+
+		for i, variable := range result.Variables {
+			//fmt.Printf("%d: oid: %s ", i, variable.Name)
+			if i == 0 {
+				fmt.Printf("{")
+			}
+			fmt.Printf("\"%s\":", paramBCM[i])
+
+			a, _ := new(big.Float).SetInt(g.ToBigInt(variable.Value)).Float64()
+			c := a / float64(1000)
+			if i == len(result.Variables)-1 {
+				fmt.Printf("%.2f,", c)
+			} else {
+				fmt.Printf("%.2f,", c) //!!!!!!!!!!! походу это лишнее
+			}
 		}
 	}
-	fmt.Printf("\"version\": \"%s\"}", version)
+	if param == 2 {
+		err := g.Default.Connect()
+		if err != nil {
+			log.Fatalf("Connect() err: %v", err)
+		}
+		defer g.Default.Conn.Close()
+		oids := paramBCOmib
+		result, err2 := g.Default.GetNext(oids) // Get() accepts up to g.MAX_OIDS
+		if err2 != nil {
+			log.Fatalf("Get() err: %v", err2)
+		}
+
+		for i, variable := range result.Variables {
+			if i == 0 {
+				fmt.Printf("{")
+			}
+			fmt.Printf(" \"%s\": ", paramBCO[i])
+
+			// the Value of each variable returned by Get() implements
+			// interface{}. You could do a type switch...
+			switch variable.Type {
+			case g.OctetString:
+				fmt.Printf("string: %s\n", string(variable.Value.([]byte)))
+			default:
+				// ... or often you're just interested in numeric values.
+				// ToBigInt() will return the Value as a BigInt, for plugging
+				// into your calculations.
+				fmt.Printf("%d,", g.ToBigInt(variable.Value))
+			}
+		}
+		fmt.Printf("\"version\": \"%s\"}", version)
+	}
+	if param == 3 {
+		err := g.Default.Connect()
+		if err != nil {
+			log.Fatalf("Connect() err: %v", err)
+		}
+		defer g.Default.Conn.Close()
+		oids := paramVIDImib
+		result, err2 := g.Default.Get(oids) // Get() accepts up to g.MAX_OIDS
+		if err2 != nil {
+			log.Fatalf("Get() err: %v", err2)
+		}
+		fmt.Print("\n")
+		fmt.Print(result)
+		fmt.Print("\n")
+		for i, variable := range result.Variables {
+			if i == 0 {
+				fmt.Printf("{")
+			}
+			fmt.Printf(" \"%s\": ", paramVIDI[i])
+
+			// the Value of each variable returned by Get() implements
+			// interface{}. You could do a type switch...
+			switch variable.Type {
+			case g.OctetString:
+				fmt.Printf("string: %s\n", string(variable.Value.([]byte)))
+			default:
+				// ... or often you're just interested in numeric values.
+				// ToBigInt() will return the Value as a BigInt, for plugging
+				// into your calculations.
+				fmt.Printf("%d,", g.ToBigInt(variable.Value))
+			}
+		}
+		fmt.Printf("\"version\": \"%s\"}", version)
+	}
 }
