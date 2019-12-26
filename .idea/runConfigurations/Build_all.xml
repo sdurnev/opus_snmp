@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Build_all" type="CompoundRunConfigurationType">
+    <toRun name="opus_snmp_macos" type="GoApplicationRunConfiguration" />
+    <toRun name="opus_snmp_rpi" type="GoApplicationRunConfiguration" />
+    <toRun name="opus_snmp_windows" type="GoApplicationRunConfiguration" />
+    <toRun name="opus_snmp_linux" type="GoApplicationRunConfiguration" />
+    <method v="2" />
+  </configuration>
+</component>
